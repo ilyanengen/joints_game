@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func loadPinJointLevel() {
         
-        let bodyA = SKSpriteNode(color: .red, size: CGSize(width: 40, height: 40))
+        let bodyA = TouchedSpriteNode(color: .red, size: CGSize(width: 40, height: 40))
         bodyA.position = CGPoint(x:self.frame.size.width/2, y:self.frame.size.height/2-bodyA.size.height/2);
         bodyA.physicsBody = SKPhysicsBody(rectangleOf: bodyA.size)
         bodyA.physicsBody?.isDynamic = true
@@ -40,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bodyA.name = "bodyA"
         self.addChild(bodyA)
         
-        let bodyB = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 80))
+        let bodyB = TouchedSpriteNode(color: .blue, size: CGSize(width: 20, height: 80))
         bodyB.position = CGPoint(x:bodyA.position.x, y:bodyA.position.y-bodyA.size.height/2-bodyB.size.height/2)
         bodyB.physicsBody = SKPhysicsBody(rectangleOf: bodyA.size)
         bodyB.physicsBody?.isDynamic = true
@@ -96,40 +96,74 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Touches handle
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        // No need in touch handle if we already have selected node
-        guard selectedNode == nil else { return }
-        
+
         guard let touch = touches.first else { return }
-        
-        let locationInScene = touch.location(in: self)
-        
-        let touchedNodes = self.nodes(at: locationInScene)
 
-        selectedNode = touchedNodes.first
+        let location = touch.location(in: self)
+        
+        let node = self.atPoint(location) // = nodeAtPoint
+        
+        self.selectedNode = node
+        self.selectedNode?.touchesBegan(touches, with: event)
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        if let touch = touches.first, let node = self.selectedNode {
-        
-            let touchLocation = touch.location(in: self)
+            guard self.selectedNode != nil else { return }
             
-            selectedNode?.position = touchLocation
-                        
-            print("touchLocation = \(touchLocation), node = \(node)")
+            self.selectedNode?.touchesMoved(touches, with: event)
         }
-    }
     
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        selectedNode = nil
+        guard self.selectedNode != nil else { return }
+        
+        self.selectedNode?.touchesEnded(touches, with: event)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        selectedNode = nil
+        guard self.selectedNode != nil else { return }
+        
+        self.selectedNode?.touchesCancelled(touches, with: event)
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        // No need in touch handle if we already have selected node
+//        guard selectedNode == nil else { return }
+//
+//        guard let touch = touches.first else { return }
+//
+//        let locationInScene = touch.location(in: self)
+//
+//        let touchedNodes = self.nodes(at: locationInScene)
+//
+//        selectedNode = touchedNodes.first
+//    }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        if let touch = touches.first, let node = self.selectedNode {
+//
+//            let touchLocation = touch.location(in: self)
+//
+//            selectedNode?.position = touchLocation
+//
+//            print("touchLocation = \(touchLocation), node = \(node)")
+//        }
+//    }
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        selectedNode = nil
+//    }
+//
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        selectedNode = nil
+//    }
     
     // MARK: - Update
     

@@ -16,6 +16,7 @@
 		2C641DED24391B52003CB277 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C641DEB24391B52003CB277 /* GameViewController.swift */; };
 		2C641DEE24391B52003CB277 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C641DEC24391B52003CB277 /* GameScene.swift */; };
 		2C641DF024391B59003CB277 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C641DEF24391B59003CB277 /* CGFloat+Extensions.swift */; };
+		2C641DF224392760003CB277 /* TouchedSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C641DF124392760003CB277 /* TouchedSpriteNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2C641DEB24391B52003CB277 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2C641DEC24391B52003CB277 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2C641DEF24391B59003CB277 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		2C641DF124392760003CB277 /* TouchedSpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchedSpriteNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				2C641DD724391ACA003CB277 /* Actions.sks */,
 				2C641DEC24391B52003CB277 /* GameScene.swift */,
 				2C641DEB24391B52003CB277 /* GameViewController.swift */,
+				2C641DF124392760003CB277 /* TouchedSpriteNode.swift */,
 				2C641DEF24391B59003CB277 /* CGFloat+Extensions.swift */,
 				2C641DDD24391ACA003CB277 /* Main.storyboard */,
 				2C641DE024391ACB003CB277 /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C641DF224392760003CB277 /* TouchedSpriteNode.swift in Sources */,
 				2C641DEE24391B52003CB277 /* GameScene.swift in Sources */,
 				2C641DED24391B52003CB277 /* GameViewController.swift in Sources */,
 				2C641DF024391B59003CB277 /* CGFloat+Extensions.swift in Sources */,
