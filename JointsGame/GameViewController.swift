@@ -1,8 +1,8 @@
 //
 //  GameViewController.swift
-//  JointsGame
+//  InverseKinematics
 //
-//  Created by Ilya B Macmini on 04/04/2020.
+//  Created by Ilya B Macmini on 28/03/2020.
 //  Copyright © 2020 ilyabiltuev. All rights reserved.
 //
 
@@ -11,40 +11,36 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
+        if let scene = GameScene(fileNamed: "GameScene") {
             
-            view.ignoresSiblingOrder = true
+            scene.scaleMode = .aspectFit
             
-            view.showsFPS = true
-            view.showsNodeCount = true
+            let skView = view as! SKView
+            skView.showsFPS = true
+            skView.showsNodeCount = true
+            skView.ignoresSiblingOrder = true
+            
+            skView.presentScene(scene)
         }
     }
-
+    
     override var shouldAutorotate: Bool {
-        return true
+        
+        return false
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        
+        return .portrait
     }
-
+    
     override var prefersStatusBarHidden: Bool {
+        
         return true
     }
 }
